@@ -1,7 +1,7 @@
 
 import './App.css';
 import app from './firebase.init';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { useState } from 'react';
 
 
@@ -20,9 +20,23 @@ function App() {
         console.error('error', error)
       })
   }
+  const handleGoogleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        setUser({})
+      })
+      .catch(error => {
+        setUser({})
+      })
+  }
+
   return (
     <div className="App">
-      <button onClick={handleGoogleSignIn}>Google Sign In</button>
+      {
+        user.email ? <button onClick={handleGoogleSignOut}>Sign Out</button> :
+          <button onClick={handleGoogleSignIn}>Google Sign In</button>
+
+      }
       <h4>Name:{user.displayName}</h4>
       <p>Email:{user.email}</p>
       <img src={user.photoURL} alt="" />

@@ -1,64 +1,32 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import app from './firebase.init';
-import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { useState } from 'react';
+
+import Header from './Components/Header/Header';
+import Home from './Components/Home/Home';
+import Products from './Components/Products/Products'
+import Orders from './Components/Orders/Orders'
+import Regester from './Components/Regester/Regester'
+import Login from './Components/Login/Login'
 
 
-const auth = getAuth(app);
+
+
 function App() {
-  const [user, setUser] = useState({})
-  const googleProvider = new GoogleAuthProvider();
-  const gitHubpProvider = new GithubAuthProvider();
-
-  const handleGoogleSignIn = () => {
-    signInWithPopup(auth, googleProvider)
-      .then(result => {
-        const user = result.user;
-        setUser(user)
-        console.log(user)
-      })
-      .catch(error => {
-        console.error('error', error)
-      })
-  }
-
-  const handleGoogleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        setUser({})
-      })
-      .catch(error => {
-        setUser({})
-      })
-  }
-
-  const handleGitHubSignIn = () => {
-    signInWithPopup(auth, gitHubpProvider)
-      .then(result => {
-        const user = result.user;
-        setUser(user)
-        console.log(user)
-      })
-      .catch(error => {
-        console.error('error', error)
-
-      })
-  }
 
 
   return (
     <div className="App">
-      {
-        user.uid ? <button onClick={handleGoogleSignOut}>Google Sign Out</button> :
-          <div>
-            <button onClick={handleGoogleSignIn}>Google Sign In</button>
-            <button onClick={handleGitHubSignIn}>Github Sign In</button>
+      <Header></Header>
+      <Routes>
+        <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/products' element={<Products></Products>}></Route>
+        <Route path='/orders' element={<Orders></Orders>}></Route>
+        <Route path='/regester' element={<Regester></Regester>}></Route>
+        <Route path='/login' element={<Login></Login>}></Route>
 
-          </div>
-      }
-      <h4>Name:{user.displayName}</h4>
-      <p>Email Address:{user.email}</p>
-      <img src={user.photoURL} alt="" />
+      </Routes>
+
+
     </div>
   );
 }

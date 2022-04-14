@@ -19,16 +19,7 @@ const LogIn = () => {
             })
     }
 
-    const handleEmailBlur = (event) => {
-        console.log(event.target.value)
-    }
-    const handlePasswordBlur = (event) => {
-        console.log(event.target.value)
-    }
-    const handleFormSbmit = event => {
-        console.log('from submit')
-        event.preventDefault();
-    }
+
     return (
         <div>
             <div className='registration w-25 mx-auto'>
@@ -38,16 +29,15 @@ const LogIn = () => {
                     <Button>Facebook</Button>
                     <Button>Github</Button>
                 </div>
-                <Form onSubmit={handleFormSbmit} className='input-form'>
+                <Form className='input-form'>
                     <Form.Group className="mb-3 mt-4" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control onBlur={handleEmailBlur} type="email" placeholder="Enter email" required />
-
+                        <Form.Control type="email" placeholder="Enter email" required />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control onBlur={handlePasswordBlur} type="password" placeholder="Password" required />
+                        <Form.Control type="password" placeholder="Password" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Check me out" />

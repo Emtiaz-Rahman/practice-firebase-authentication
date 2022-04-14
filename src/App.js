@@ -7,6 +7,10 @@ import Products from './Components/Products/Products'
 import Orders from './Components/Orders/Orders'
 import Regester from './Components/Regester/Regester'
 import LogIn from './Components/LogIn/LogIn'
+import RequireAuth from './Components/RequireAuth/RequireAuth';
+
+
+
 
 
 
@@ -20,9 +24,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/products' element={<Products></Products>}></Route>
-        <Route path='/orders' element={<Orders></Orders>}></Route>
+        <Route path='/orders' element={<RequireAuth><Orders></Orders></RequireAuth>}></Route>
         <Route path='/regester' element={<Regester></Regester>}></Route>
-        <Route path='/login' element={<LogIn></LogIn>}></Route>
+        <Route path='/login' element={<LogIn></LogIn>}>
+        </Route>
 
       </Routes>
 

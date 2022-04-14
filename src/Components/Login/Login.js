@@ -1,8 +1,24 @@
 import React from 'react';
+import { getAuth } from 'firebase/auth';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
-import './Login.css'
+import app from '../../firebase.init';
+import './LogIn.css'
 
-const Login = () => {
+const auth = getAuth(app);
+const LogIn = () => {
+    const [signInWithGoogle] = useSignInWithGoogle(auth)
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(() => {
+                navigate(from, { replace: true })
+            })
+    }
+
     const handleEmailBlur = (event) => {
         console.log(event.target.value)
     }
@@ -18,7 +34,7 @@ const Login = () => {
             <div className='registration w-25 mx-auto'>
                 <h4 className='text-primary '>Please Login</h4>
                 <div className='d-flex justify-content-between'>
-                    <Button>Google SignIn</Button>
+                    <Button onClick={handleGoogleSignIn}>Google SignIn</Button>
                     <Button>Facebook</Button>
                     <Button>Github</Button>
                 </div>
@@ -45,4 +61,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LogIn;

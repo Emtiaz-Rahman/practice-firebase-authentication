@@ -6,7 +6,7 @@ import Home from './Components/Home/Home';
 import Products from './Components/Products/Products'
 import Orders from './Components/Orders/Orders'
 import Regester from './Components/Regester/Regester'
-import Login from './Components/Login/Login'
+import LogIn from './Components/LogIn/LogIn'
 
 
 
@@ -22,7 +22,7 @@ function App() {
         <Route path='/products' element={<Products></Products>}></Route>
         <Route path='/orders' element={<Orders></Orders>}></Route>
         <Route path='/regester' element={<Regester></Regester>}></Route>
-        <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/login' element={<LogIn></LogIn>}></Route>
 
       </Routes>
 
